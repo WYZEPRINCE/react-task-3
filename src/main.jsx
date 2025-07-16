@@ -1,3 +1,4 @@
+import React from 'react';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Route, Routes, BrowserRouter as Router, Navigate } from "react-router-dom";
