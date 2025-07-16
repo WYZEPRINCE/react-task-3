@@ -1,0 +1,35 @@
+$primary-color: #333;
+$secondary-color: #ACACAC;
+
+
+
+
+.container1 {
+  background-color: #fff;
+  padding: 35px  50px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+  border: none;
+  border-radius: 24px;
+}
+
+.container2 {
+  padding: 30px 40px;
+  display: flex; 
+  background-color: #fff; 
+  width: 100%;
+  height: fit-content;
+  border: none;
+  border-radius: 24px;
+
+ 
+}
+.container3 {
+    background-color: f3f5ff;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: fit-content;
+}
