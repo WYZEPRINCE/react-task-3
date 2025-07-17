@@ -1,6 +1,6 @@
 import React from 'react'
 import IconRemove from "../../assets/images/IconRemove.png";
-import Search from "../../assets/images/iconSearch.png";
+import Search from "../../assets/images/IconSearch.png";
 import { useNavigate, Link} from 'react-router-dom';
 import IconPin from "../../assets/images/IconPin.png";
 import IconUser from "../../assets/images/IconUsers.png";

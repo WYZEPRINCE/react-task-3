@@ -164,11 +164,11 @@ const DashboardOverview = () => {
               <p>5,423</p>
               {/* Active now avatars */}
               <div className="flex flex-row space-x-[-8px]">
-                <img src={Elipse1} width={26} alt="" />
-                <img src={Elipse2} width={26} alt="" />
-                <img src={Elipse3} width={26} alt="" />
-                <img src={Elipse4} width={26} alt="" />
-                <img src={Elipse5} width={26} alt="" />
+                <img src={Elipse1} width={26} alt="avartar" />
+                <img src={Elipse2} width={26} alt="avartar" />
+                <img src={Elipse3} width={26} alt="avartar" />
+                <img src={Elipse4} width={26} alt="avartar" />
+                <img src={Elipse5} width={26} alt="avartar" />
               </div>
             </div>
           </div>
