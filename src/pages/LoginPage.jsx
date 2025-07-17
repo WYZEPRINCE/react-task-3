@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import OnboardingNav from "../components/OnboardingNav";
 import IconRemove from "../../src/assets/images/IconRemove.png";
 import Fb from "../../src/assets/images/fb.png";
-import SuperG from "../../src/assets/images/super-G.png";
+import SuperG from "../../src/assets/images/super-g.png";
 import Apple from "../../src/assets/images/apple.png";
 import Eyeon from "../../src/assets/images/eyeon.png";
 import { doSignInWithEmailAndPassword } from '../utils/auth';
