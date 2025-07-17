@@ -5,7 +5,7 @@ import DashboardNav from "../../components/DasboardNav";
 import KeySquare from "../../assets/images/key-square.png";
 import { Outlet } from 'react-router-dom';
 import Settings from "../../assets/images/setting.png"
-import UserPics from "../../assets/images/UserPics.png";
+import UserPics from "../../assets/images/userPics.png";
 import ArrowRight from "../../assets/images/arrowRight.png";
 import ProductSquare from "../../assets/images/3d-square.png";
 import MessageQuestion from "../../assets/images/message-question.png";
