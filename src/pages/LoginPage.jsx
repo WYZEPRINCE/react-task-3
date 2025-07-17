@@ -7,19 +7,29 @@ import SuperG from "../../src/assets/images/super-g.png";
 import Apple from "../../src/assets/images/apple.png";
 import Eyeon from "../../src/assets/images/eyeon.png";
 import { doSignInWithEmailAndPassword } from '../utils/auth';
-import { useAuth } from '../context/useAuth';
+// import { useAuth } from '../context/useAuth';
 
 function LoginPage() {
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth();
+  // const { isLoggedIn } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!isSigningIn) {
+      if (!emailRegex.test(email)) {
+        setErrorMessage("Invalid email format");
+        return;
+      }
+      if (!password || password.length < 8) {
+        setErrorMessage("Password must be at least 8 characters");
+        return;
+      }
       setIsSigningIn(true);
       try {
         await doSignInWithEmailAndPassword(email, password);
@@ -35,9 +45,9 @@ function LoginPage() {
     }
   };
 
-  if (isLoggedIn) {
-    return <Navigate to={"/dashboard"} replace={true} />;
-  }
+  // if (isLoggedIn) {
+  //   return <Navigate to={"/dashboard"} replace={true} />;
+  // }
 
   return (
     <div className="card-container1 flex flex-col gap-7">
