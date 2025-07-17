@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import OnboardingNav from '../../components/OnboardingNav';
 import IconRemove from "../../assets/images/IconRemove.png";
 import Fb from "../../assets/images/fb.png";
-import SuperG from "../../assets/images/super-G.png";
+import SuperG from "../../assets/images/super-g.png";
 import Apple from "../../assets/images/apple.png";
 import Tick from "../../assets/images/tick.png";
 import Eyeon from "../../assets/images/eyeon.png"; 
