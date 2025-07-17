@@ -29,6 +29,7 @@ function RegisterUser() {
     setIsRegistering(true);
     try {
       await doCreateUserWithEmailAndPassword(auth, email, password);
+      navigate("/personalinfo");
     } catch (error) {
       setIsRegistering(false);
       if (error.code === "auth/email-already-in-use") {
@@ -78,7 +79,7 @@ function RegisterUser() {
       <div>
         <p className="text-[13px] text-[#230a1666] mb-5">or register with email</p>
 
-        {errorMessage && <p className="text-red-600">{errorMessage}</p>}
+        {errorMessage && <p className="text-red-600 font-semibold">{errorMessage}</p>}
         <form action="" onClick={onSubmit}>
           <div className=" flex flex-col gap-1">
             <div className=" flex flex-col mb-5 px-3 py-1 border-2 rounded-xl border-gray-300 active:border-[#5932EA] focus:border-[#5932EA]">
