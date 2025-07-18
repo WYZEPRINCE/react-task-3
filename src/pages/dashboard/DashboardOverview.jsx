@@ -127,7 +127,7 @@ const DashboardOverview = () => {
             />
             <div>
               <p>Total Customers</p>
-              <p>5,423</p>
+              <p className="font-bold text-2xl">5,423</p>
               <span className="flex text-green-700 font-semibold">
                 ↑ 16%<p> this month</p>
               </span>
@@ -144,7 +144,7 @@ const DashboardOverview = () => {
             />
             <div>
               <p>Members</p>
-              <p>5,423</p>
+              <p className="font-bold text-2xl">1,893</p>
               <span className="flex text-red-700 font-semibold">
                 ↓ 1% <p> this month</p>
               </span>
@@ -160,8 +160,8 @@ const DashboardOverview = () => {
               alt=""
             />
             <div>
-              <p>Avtive Now</p>
-              <p>5,423</p>
+              <p>Active Now</p>
+              <p className="font-bold text-2xl">189</p>
               {/* Active now avatars */}
               <div className="flex flex-row space-x-[-8px]">
                 <img src={Elipse1} width={26} alt="avartar" />
