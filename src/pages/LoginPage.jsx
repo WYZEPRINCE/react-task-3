@@ -7,55 +7,46 @@ import SuperG from "../../src/assets/images/super-g.png";
 import Apple from "../../src/assets/images/apple.png";
 import Eyeon from "../../src/assets/images/eyeon.png";
 import { doSignInWithEmailAndPassword } from '../utils/auth';
-// import { useAuth } from '../context/useAuth';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+  email: yup.string().email('Invalid email format').required('Email is required'),
+  password: yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
+});
 
 function LoginPage() {
   const navigate = useNavigate();
-  // const { isLoggedIn } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [isSigningIn, setIsSigningIn] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
     if (!isSigningIn) {
-      if (!emailRegex.test(email)) {
-        setErrorMessage("Invalid email format");
-        return;
-      }
-      if (!password || password.length < 8) {
-        setErrorMessage("Password must be at least 8 characters");
-        return;
-      }
       setIsSigningIn(true);
       try {
-        await doSignInWithEmailAndPassword(email, password);
+        await doSignInWithEmailAndPassword(data.email, data.password);
         navigate("/dashboard");
       } catch (error) {
         setIsSigningIn(false);
         if (error.code === 'auth/invalid-credential') {
-          setErrorMessage('Invalid email or password');
+          // Handle invalid credentials error
         } else {
-          setErrorMessage(error.message);
+          // Handle other errors
         }
       }
     }
   };
 
-  // if (isLoggedIn) {
-  //   return <Navigate to={"/dashboard"} replace={true} />;
-  // }
-
   return (
-    <div className="card-container1 flex flex-col gap-7">
+    <div className="card-container1 flex flex-col gap-7 max-w-md mx-auto p-4 md:p-8 lg:p-12">
       <div className="flex flex-row justify-between">
         <OnboardingNav />
-        <img src={IconRemove} width={24} alt="closebutton" />
+        <img src={IconRemove} width={24} alt="closebutton" className="md:hidden" />
       </div>
-      <div className="flex gap-5">
+      <div className="flex gap-5 justify-center md:justify-start">
         <div className="bg-[#f6f6f6] py-5 px-5 rounded-[100px]">
           <img src={Apple} width={20} alt="" />
         </div>
@@ -69,43 +60,27 @@ function LoginPage() {
       {/* Email input */}
       <div>
         <p className="text-[13px] text-[#230a1666] mb-5">or login with email</p>
-
-        {errorMessage && <p className="text-red-600 font-semibold">{errorMessage}</p>}
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-1">
             <div className="flex flex-col mb-5 px-3 py-1 border-2 rounded-xl border-gray-300 active:border-[#5932EA] focus:border-purple-500">
               <span className="text-[14px] text-[#1A0710A6]">Email address</span>
               <div className="flex flex-row justify-between gap-3">
-                <input
-                  type="email"
-                  placeholder="example@mail.com"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <input type="email" placeholder="example@mail.com" {...register('email')} className="w-full" />
               </div>
+              {errors.email && <p className="text-red-500 text-[12px]">{errors.email.message}</p>}
             </div>
             {/* password input */}
             <div className="field-content flex flex-col px-3 py-1 mb-8 border-3 rounded-xl border-[#5932EA] active:border-[#5932EA]">
               <span className="text-[14px] text-[#1A0710A6]">Password</span>
               <div className="flex flex-row justify-between">
-                <input
-                  type="password"
-                  placeholder="*********"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <input type="password" placeholder="*********" {...register('password')} className="w-full" />
                 <div className="flex gap-2">
                   <img src={Eyeon} width={22} alt="showpwd" />
                 </div>
               </div>
+              {errors.password && <p className="text-red-500 text-[12px]">{errors.password.message}</p>}
             </div>
-            {errorMessage && (
-              <p className="text-red-500 text-[12px]">{errorMessage}</p>
-            )}
-            <button className="hover:shadow-lg mb-2" type="submit">
-              Login to Dashboard
+            <button className="hover:shadow-lg mb-2" type="submit"> Login to Dashboard
             </button>
           </div>
           {/* remember me */}
@@ -119,3 +94,4 @@ function LoginPage() {
   );
 }
 export default LoginPage;
+

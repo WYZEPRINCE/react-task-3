@@ -33,3 +33,25 @@ $secondary-color: #ACACAC;
     width: 100%;
     height: fit-content;
 }
+
+
+@media (max-width: 768px) {
+  body {
+    // margin: 0px 24px;
+    font-size: small;
+    width: auto;
+  }
+  .container1 {
+    flex-direction: column;
+    padding: 20px;
+    max-width: 100%;
+    
+  }
+  .container2 {
+    padding: 12px;
+  }
+
+  .container3 {
+    font-size: small;
+  }
+}

@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 import KeySquare from "../../assets/images/key-square.png";
-import DashboardNav from '../../components/DasboardNav';
-import { Outlet } from 'react-router-dom';
+import DashboardNav from "../../components/DashboardNav";
+import { Outlet } from "react-router-dom";
 
 const Customer = () => {
   // return (
@@ -21,6 +21,6 @@ const Customer = () => {
   //   //   <Outlet /> */}
   //   // </div>
   // )
-}
+};
 
-export default Customer
+export default Customer;
