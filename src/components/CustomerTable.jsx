@@ -82,7 +82,7 @@ const CustomerTable = () => {
   };
 
   const MobileCard = ({ customer }) => (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4 shadow-sm w-full">
+    <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4 shadow-sm w-full flex-1">
       <div className="flex items-start justify-between mb-3">
         <div>
           <h3 className="text-sm font-semibold text-gray-900">{customer.name}</h3>
@@ -110,9 +110,9 @@ const CustomerTable = () => {
 
   return (
     <div className="w-full">
-      {/* Desktop and Tablet Table View */}
-      <div className="hidden sm:block bg-white rounded-lg shadow-sm overflow-hidden">
-        <div className="overflow-x-auto">
+      {/* Desktop */}
+      <div className="hidden lg:block bg-white rounded-lg shadow-sm overflow-hidden ">
+        <div className="overflow-x-hidden">
           <table className="w-full min-w-[700px]">
             <thead className="bg-gray-50">
               <tr>
@@ -167,8 +167,8 @@ const CustomerTable = () => {
         </div>
       </div>
 
-      {/* Mobile Card View */}
-      <div className="sm:hidden">
+      {/* Mobile amd tablet Card View */}
+      <div className="lg:hidden flex-1">
         <div className="mb-4">
           <h2 className="text-lg font-semibold text-gray-900">Customers</h2>
           <p className="text-sm text-gray-600">{customers.length} total customers</p>

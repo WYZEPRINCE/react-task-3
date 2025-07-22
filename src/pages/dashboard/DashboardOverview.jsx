@@ -30,7 +30,7 @@ const DashboardOverview = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 1024) {
         setIsCollapsed(true);
       } else {
         setIsCollapsed(false);
@@ -276,7 +276,7 @@ const DashboardOverview = () => {
         <div className="container2">
           <div>
             <div className="flex flex-col gap-5">
-              <div className=" md:flex flex-row justify-between sm:flex flex-col space-y-2">
+              <div className=" md:flex flex-row justify-between sm:flex flex-col space-y-2 gap-3">
                 <div>
                   <p className="text-[20px] font-medium">All Customers</p>
                 </div>

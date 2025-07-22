@@ -1,7 +1,7 @@
 .card-container1 {
     box-shadow: 0 17px 48px rgba(92, 99, 107, 0.08);
     width: 502px;
-    margin:100px auto;
+    margin: auto;
     background-color: #ffffff;
     border: none;
     border-radius: 24px;
@@ -14,7 +14,7 @@
 .card-container2 {
     box-shadow: 0 17px 48px rgba(92, 99, 107, 0.08);
     width: 502px;
-    margin:100px auto;
+    margin: auto;
     background-color: #ffffff;
     border: none;
     border-radius: 24px;
@@ -38,4 +38,30 @@ a.active {
     color: #1A0710D9;
     border-bottom: 3px solid #ff5f5f;
     padding-bottom: 10px;
+}
+
+@media (min-width:768px) {
+    .card-container1 {
+    box-shadow: 0 17px 48px rgba(92, 99, 107, 0.08);
+    width: 502px;
+    margin:100px auto;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 24px;
+    place-self: center;
+    padding: 20px 44px;
+    display: flex;
+    justify-content: center;    
+}
+
+.card-container2 {
+    box-shadow: 0 17px 48px rgba(92, 99, 107, 0.08);
+    width: 502px;
+    margin:100px auto;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 24px;
+    place-self: center;
+}
+
 }

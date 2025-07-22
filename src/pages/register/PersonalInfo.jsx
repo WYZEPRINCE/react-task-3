@@ -1,18 +1,32 @@
-import React from 'react'
-import IconRemove from "../../assets/images/IconRemove.png"
-import IconInfo from "../../assets/images/IconInfo.png"
-import ChevronDown from "../../assets/images/chevron-down.png"
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import IconRemove from "../../assets/images/IconRemove.png";
+import IconInfo from "../../assets/images/IconInfo.png";
+import ChevronDown from "../../assets/images/chevron-down.png";
+import { useNavigate } from 'react-router-dom';
 import Calendar from "../../assets/images/calendar.png";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
-function PersonalInfo () {
-  const navigate = useNavigate ();
+const schema = yup.object().shape({
+  fullname: yup.string().required('Full name is required'),
+  phoneNumber: yup.string().required('Phone number is required').matches(/^[0-9]+$/, 'Phone number must be a number'),
+  birthday: yup.string().notRequired(),
+  gender: yup.string().required('Gender is required'),
+});
 
-  const handleClick = () =>{
-    navigate("/inputaddress")
-  }
+function PersonalInfo() {
+  const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const handleClick = () => {
+    navigate("/inputaddress");
+  };
+
   return (
-    <div className="card-container1 flex flex-col gap-7">
+    <div className="card-container1 flex flex-col gap-7 w-fit">
       <div className="flex flex-row justify-between">
         <h5 className="flex flex-row place-items-baseline gap-4 font-semibold text-[20px]">
           Personal information{" "}
@@ -20,36 +34,34 @@ function PersonalInfo () {
         </h5>
         <img className="size-6" src={IconRemove} alt="closebutton" />
       </div>
-
       {/* fullname input */}
       <div className="flex flex-col">
-        <form action="" className="flex flex-col gap-5">
+        <form onSubmit={handleSubmit(handleClick)} className="flex flex-col gap-5">
           <input
-            className="p-3 border-2 border-[#dddddd] w-full rounded-lg "
+            className="p-3 border-2 border-[#dddddd] w-full rounded-lg"
             type="text"
-            name="fullname"
-            id="FullName"
+            {...register('fullname')}
             placeholder="Full name"
           />
-          <div className="flex gap-2 ">
-            <p className="text-[#1A0710A6]">Gender: </p>
+          {errors.fullname && <p className="text-red-500">{errors.fullname.message}</p>}
+          <div className="flex gap-2">
+            <p className="text-[#1A0710A6]">Gender:</p>
             <input
-              className="px-3 py-1 border-3 rounded-lg border-[#5932EA] active:border-[#5932EA] "
+              className="px-3 py-1 border-3 rounded-lg border-[#5932EA] active:border-[#5932EA]"
               type="radio"
-              name="gender"
-              id="gender"
+              {...register('gender')}
+              value="male"
             />
-            <label htmlFor="">Male</label>
-
+            <label>Male</label>
             <input
-              className="px-3 py-1 border-3 rounded-lg border-[#5932EA] active:border-[#5932EA] "
+              className="px-3 py-1 border-3 rounded-lg border-[#5932EA] active:border-[#5932EA]"
               type="radio"
-              name="gender"
-              id="gender"
+              {...register('gender')}
+              value="female"
             />
-            <label htmlFor="">Female</label>
+            <label>Female</label>
           </div>
-
+          {errors.gender && <p className="text-red-500">{errors.gender.message}</p>}
           {/* info */}
           <div className="flex gap-2 place-items-center">
             <img className="size-3.5" src={IconInfo} width={""} alt="info" />
@@ -57,45 +69,34 @@ function PersonalInfo () {
               The phone number and birthday are only visible to you
             </p>
           </div>
-
           {/* phone input */}
           <div className="flex gap-6">
-            <div className="flex flex-row relative p-2  border-2  border-[#dddddd] w-[80px] rounded-lg ">
-              <input
-                type="tel"
-                required
-                className=""
-                // value={email}
-                // onChange={(e) => setEmail(e.target.value)}
-                maxLength={10}
-              />
-
-              <div className="flex gap-2 absolute place-self-center">
+            <div className="flex flex-row relative p-2 border-2 border-[#dddddd] w-[80px] rounded-lg">
+              <div className="flex gap-1 absolute place-self-center">
                 <p className="text-[#1A0710A6]">+598</p>
                 <img src={ChevronDown} width={20} alt="down arrow" />
               </div>
             </div>
             <input
-              className=" p-3 border-2 border-[#dddddd] w-full rounded-lg "
+              className="p-3 border-2 border-[#dddddd] w-full rounded-lg"
               type="tel"
-              name="phoneno"
-              id="phonenumber"
+              {...register('phoneNumber')}
               placeholder="Phone number"
             />
           </div>
-
+          {errors.phoneNumber && <p className="text-red-500">{errors.phoneNumber.message}</p>}
           {/* Birthday input */}
           <div className="relative">
             <input
-              className=" p-3 border-2 border-[#dddddd] w-full rounded-lg "
-              type="tel"
-              name="bday"
-              id="birthday"
+              className="p-3 border-2 border-[#dddddd] w-full rounded-lg"
+              type="date"
+              {...register('birthday')}
               placeholder="Birthday"
             />
             <div className="flex gap-2 place-items-center absolute right-3 top-4">
-              <p className="text-[14px] text-[#1A071066]"> Optional </p>
-              <img className="size-6" src={Calendar} alt="calendar" />
+              <p className="text-[14px] text-[#1A071066]">Optional</p>
+              <img className="size-6" src={Calendar} alt="calendar"
+ />
             </div>
           </div>
         </form>
